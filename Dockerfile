@@ -4,6 +4,8 @@ USER root
 WORKDIR /root/
 RUN apt-get update && \
     apt-get -y install git python-pip autoconf bison build-essential pkg-config bison flex autoconf automake libtool make git python2.7 python-pip sqlite3 cmake sudo
+RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+RUN python2.7 get-pip.py
 RUN pip install flask flask-login pyserial pymodbus
 
 RUN useradd --create-home --shell /bin/bash openplc
@@ -15,7 +17,7 @@ WORKDIR /home/openplc
 
 RUN git clone https://github.com/thiagoralves/OpenPLC_v3.git
 WORKDIR /home/openplc/OpenPLC_v3
-RUN sudo ./install.sh custom
+RUN sudo ./install.sh rpi
 
 RUN sudo apt-get clean
 
