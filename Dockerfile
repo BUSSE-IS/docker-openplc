@@ -21,6 +21,9 @@ RUN sudo ./install.sh rpi
 
 RUN sudo apt-get clean
 
+WORKDIR /home/openplc/OpenPLC_v3/webserver/scripts
+RUN ./change_hardware_layer.sh rpi
+
 RUN mkdir /home/openplc/scripts
 
 COPY run.sh /home/openplc
